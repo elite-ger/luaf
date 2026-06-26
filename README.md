@@ -34,9 +34,9 @@ Requires a C compiler and CMake 3.16+. On Windows, links against `ws2_32` for HT
 
 ```bash
 ./build/luaf
-1```
+```
 
-1```
+```
 Luaf v0.1.0 (Lua 5.5.0 + wait/spawn/delay/http)
 Type 'exit' or Ctrl+D to quit.
 
@@ -183,4 +183,4 @@ luaf/
 
 MIT — see [LICENSE](LICENSE) for details.
 
-Uses Lua 5.5.0, which is also MIT licensed.
+Uses Lua 5.5.0, copyright Lua.org, PUC-Rio, also MIT licensed.
