@@ -183,4 +183,8 @@ luaf/
 
 MIT — see [LICENSE](LICENSE) for details.
 
+<<<<<<< HEAD
 Uses Lua 5.5.0, copyright Lua.org, PUC-Rio, also MIT licensed.
+=======
+Uses Lua 5.5.0, which is also MIT licensed.
+>>>>>>> parent of c7cd134 (Update README)

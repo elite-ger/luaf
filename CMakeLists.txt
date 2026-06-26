@@ -47,6 +47,7 @@ set(LUAF_SOURCES
     src/luaf_runtime.c
     src/luaf_http.c
     src/luaf_vector.c
+    src/luaf_preprocess.c
 )
 
 add_library(luaf_lib STATIC ${LUAF_SOURCES})
