@@ -10,9 +10,6 @@ static int luaf_wait(lua_State *L);
 static int luaf_spawn(lua_State *L);
 static int luaf_delay(lua_State *L);
 
-/* ========================================================
-   __solid_register(name, value)
-   ======================================================== */
 static int l_solid_register(lua_State *L)
 {
     const char *name = luaL_checkstring(L, 1);
@@ -21,9 +18,6 @@ static int l_solid_register(lua_State *L)
     return 1;
 }
 
-/* ========================================================
-   __solid_sync(name, value)
-   ======================================================== */
 static int l_solid_sync(lua_State *L)
 {
     const char *name = luaL_checkstring(L, 1);
@@ -31,9 +25,6 @@ static int l_solid_sync(lua_State *L)
     return 0;
 }
 
-/* ========================================================
-   __luaf_check_int(value)
-   ======================================================== */
 static int l_check_int(lua_State *L)
 {
     if (!lua_isinteger(L, 1))
@@ -44,9 +35,6 @@ static int l_check_int(lua_State *L)
     return 1;
 }
 
-/* ========================================================
-   __luaf_check_number(value)
-   ======================================================== */
 static int l_check_number(lua_State *L)
 {
     if (!lua_isnumber(L, 1))
@@ -57,9 +45,6 @@ static int l_check_number(lua_State *L)
     return 1;
 }
 
-/* ========================================================
-   wait(seconds)
-   ======================================================== */
 static int luaf_wait(lua_State *L)
 {
     double seconds = luaL_optnumber(L, 1, 0.03);
@@ -94,9 +79,6 @@ static int luaf_wait(lua_State *L)
     return lua_yield(L, 0);
 }
 
-/* ========================================================
-   spawn(func)
-   ======================================================== */
 static int luaf_spawn(lua_State *L)
 {
     luaL_checktype(L, 1, LUA_TFUNCTION);
@@ -117,7 +99,6 @@ static int luaf_spawn(lua_State *L)
     lua_pushvalue(L, 1);
     lua_xmove(L, co, 1);
 
-    /* Регистрируем глобалы в корутине */
     lua_pushcfunction(co, luaf_wait);
     lua_setglobal(co, "wait");
     lua_pushcfunction(co, luaf_spawn);
@@ -164,9 +145,6 @@ static int luaf_spawn(lua_State *L)
     return 0;
 }
 
-/* ========================================================
-   delay(seconds, func)
-   ======================================================== */
 static int luaf_delay(lua_State *L)
 {
     double seconds = luaL_checknumber(L, 1);
