@@ -34,9 +34,9 @@ Requires a C compiler and CMake 3.16+. On Windows, links against `ws2_32` for HT
 
 ```bash
 ./build/luaf
-```
+1```
 
-```
+1```
 Luaf v0.1.0 (Lua 5.5.0 + wait/spawn/delay/http)
 Type 'exit' or Ctrl+D to quit.
 
