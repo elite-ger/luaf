@@ -1,6 +1,5 @@
 build/
 cmake-build-*/
-examples/
 
 *.o
 *.a

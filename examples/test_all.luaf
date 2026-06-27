@@ -1,0 +1,99 @@
+print("=== Luaf Test Suite ===\n")
+
+-- Vectors
+print("-- Vectors --")
+local v3 = Vector3.new(10, 20, 30)
+local v2 = Vector2.new(1, 2)
+local v1 = Vector1.new(5)
+local v4 = Vector4.new(1, 2, 3, 4)
+print("Vector3:", v3)
+print("Vector2:", v2)
+print("Vector1:", v1)
+print("Vector4:", v4)
+print("V3 + V3:", v3 + v3)
+print("V3 * 2:", v3 * 2)
+print("V3 magnitude:", v3:Magnitude())
+print("V3 unit:", v3:Unit())
+print("V3 dot:", v3:Dot(Vector3.new(1, 0, 0)))
+print("V3 cross:", v3:Cross(Vector3.new(0, 1, 0)))
+
+-- Signal
+print("\n-- Signal --")
+local Signal = require("signal")
+local sig = Signal.new()
+sig:Connect(function(msg) print("Got signal:", msg) end)
+sig:Fire("Hello from Signal!")
+
+-- Solid
+print("\n-- Solid --")
+solid("health", 100)
+solid("speed", 1.5)
+print("Health:", health.value)
+print("Speed:", speed.value)
+health.value = health.value - 20
+print("Health after damage:", health.value)
+
+-- wait/spawn/delay
+print("\n-- wait/spawn/delay --")
+print("Starting spawn test...")
+spawn(function()
+    for i = 1, 3 do
+        print("  [spawn] iter", i)
+        wait(0.2)
+    end
+    print("  [spawn] done")
+end)
+
+delay(0.5, function()
+    print("  [delay] fired after 0.5s")
+end)
+
+for i = 1, 2 do
+    print("  [main] tick", i)
+    wait(0.15)
+end
+print("  [main] done (waiting for spawned/delayed...)")
+
+-- Modules
+print("\n-- Modules --")
+local World = require("world")
+local Input = require("input")
+local Time = require("time")
+local Game = require("game")
+print("World loaded:", type(World))
+print("Input loaded:", type(Input))
+print("Time loaded:", type(Time))
+print("Game loaded:", type(Game))
+print("World.Gravity:", World.Gravity)
+
+-- Easing
+print("\n-- Easing --")
+local Easing = require("easing")
+print("Easing.QuadOut(0.5):", Easing.QuadOut(0.5))
+
+-- Tween
+print("\n-- Tween --")
+local Tween = require("tween")
+local obj = { X = 0 }
+local tw = Tween.new(obj, { X = 100 }, 1, Easing.QuadOut)
+tw:Play()
+tw:Update(0.5)
+print("Tween at 0.5s:", obj.X)
+tw:Update(0.5)
+print("Tween at 1.0s:", obj.X)
+
+-- HTTP
+print("\n-- HTTP --")
+print("Async request to example.com...")
+http.get_async("http://example.com", function(data, err)
+    if err then
+        print("HTTP error:", err)
+    else
+        print("HTTP response received (" .. #data .. " bytes)")
+        print("First 100 chars:", string.sub(data, 1, 100))
+    end
+end)
+print("Request sent, waiting...")
+wait(2)
+
+print("\n=== All tests passed! ===")

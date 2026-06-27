@@ -1,0 +1,5 @@
+solid("health", 100)
+print(health.value)
+health.value = 50
+health.value = health.value + 10 
+print(health)

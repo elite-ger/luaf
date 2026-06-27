@@ -1,0 +1,15 @@
+print("Starting async request...")
+
+http.get_async("http://httpbin.org/get", function(data, err)
+    if err then
+        print("Error:", err)
+    else
+        print("Got response:", data)
+    end
+end)
+
+print("Request sent, continuing...")
+wait(0.1)
+print("Still running while waiting for HTTP...")
+wait(3)
+print("Done")

@@ -1,0 +1,37 @@
+print("Main start")
+
+spawn(function()
+    for i = 1, 3 do
+        print("  [spawn A] iter", i)
+        wait(0.4)
+    end
+    print("  [spawn A] done")
+end)
+
+spawn(function()
+    for i = 1, 2 do
+        print("  [spawn B] iter", i)
+        wait(0.6)
+    end
+    print("  [spawn B] done")
+end)
+
+delay(2.0, function()
+    print("  [delayed 2s] fired!")
+end)
+
+delay(0.5, function()
+    print("  [delayed 0.5s] fired!")
+    spawn(function()
+        print("    [nested spawn] hello!")
+        wait(0.3)
+        print("    [nested spawn] bye!")
+    end)
+end)
+
+for i = 1, 5 do
+    print("  [main] tick", i)
+    wait(0.3)
+end
+
+print("Main done")

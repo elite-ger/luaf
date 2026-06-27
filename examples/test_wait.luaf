@@ -1,0 +1,8 @@
+print("Wait test started at", os.time and os.time() or 0)
+
+for i = 1, 5 do
+    print("Loop iteration:", i)
+    wait(0.5)
+end
+
+print("Wait test done!")
