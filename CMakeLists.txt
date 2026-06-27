@@ -61,5 +61,4 @@ if(WIN32)
     target_link_libraries(luaf PRIVATE ws2_32)
 endif()
 
-file(COPY examples/ DESTINATION ${CMAKE_BINARY_DIR}/examples)
 file(COPY modules/ DESTINATION ${CMAKE_BINARY_DIR}/modules)
